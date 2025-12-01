@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- Conexión a MySQL -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">
+            jdbc:mysql://localhost:3306/IMDB?useSSL=false&amp;serverTimezone=UTC
+        </property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">user123</property>
+
+        <!-- Dialecto MySQL -->
+        <!-- Dialecto MySQL 8 -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+
+
+        <!-- Crear/actualizar tablas automáticamente -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Mostrar SQL en consola -->
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+
+        <!-- Registrar entidades anotadas -->
+        <mapping class="org.example.modelo.Pelicula"/>
+        <mapping class="org.example.modelo.Opinion"/>
+
+
+
+    </session-factory>
+</hibernate-configuration>
