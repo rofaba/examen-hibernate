@@ -7,27 +7,6 @@ import java.util.List;
 public class OpinionRepository implements OpinionDAO {
 
     @Override
-    public Opinion findById(Integer id) {
-        try (var session = org.example.config.HibernateUtil.getSessionFactory().openSession()) {
-            return session.get(Opinion.class, id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-
-    }
-
-    @Override
-    public List<Opinion> findAll() {
-        try (var session = org.example.config.HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Opinion", Opinion.class).list();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    @Override
     public void save(Opinion opinion) {
         var tx = (org.hibernate.Transaction) null;
         try (var session = org.example.config.HibernateUtil.getSessionFactory().openSession()) {

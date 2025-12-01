@@ -16,7 +16,7 @@ public class PeliculaService {
         var pelicula = pelirepo.findById(peliculaId);
         if (pelicula != null) {
 
-            // Validación  puntuación
+            // Validación puntuación
             if (calificacion == null || calificacion < 1 || calificacion > 5) {
                 throw new IllegalArgumentException("La puntuación debe estar entre 1 y 5.");
             }

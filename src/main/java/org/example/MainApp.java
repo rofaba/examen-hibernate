@@ -24,6 +24,7 @@ public class MainApp {
         Pelicula pCritica = null;
         Pelicula pBuena = null;
 
+        //REGISTRO NUEVAS PELICULAS
         System.out.println("registro pelicula nueva");
 
         pCritica = peliculaService.crearPelicula("La Noche de los Zombies");
@@ -32,7 +33,8 @@ public class MainApp {
         pBuena = peliculaService.crearPelicula("El Secreto de tus ojos");
         System.out.println("Película 2 creada (ID: " + pBuena.getId() + "): " + pBuena.getTitulo());
 
-        System.out.println("resgistro opinion a pelicula existente");
+        //REGISTRO OPINIONES EN PELICULAS EXISTENTES
+        System.out.println("registro opinion a pelicula existente");
 
         peliculaService.registrarOpinionEnPelicula(pCritica.getId(), "Falla de principio a fin.", 1, USUARIO_CRITICO);
         peliculaService.registrarOpinionEnPelicula(pCritica.getId(), "Sólo para fans del director.", 2, USUARIO_FAN);
@@ -42,6 +44,7 @@ public class MainApp {
 
         System.out.println("Opiniones añadidas.");
 
+        //OPINIONES DE UN USUARIO ESPECIFICO
         System.out.println("opiniones de un usuario especifico");
 
         List<Opinion> opinionesCritico = opinionService.findAllOpinionsByUser(USUARIO_CRITICO);
@@ -51,7 +54,7 @@ public class MainApp {
                 System.out.println("  [ID:" + opinion.getId() + "] " + opinion.getDescripcion() + " -> " + opinion.getPuntuacion() + "/5")
         );
 
-
+    //PELICULAS CON BAJA PUNTUACION
         System.out.println("peliculas con baja puntuacion");
 
         List<Pelicula> peliculasBajas = peliculaService.obtenerPeliculasConBajaPuntuacion();
@@ -64,6 +67,8 @@ public class MainApp {
         } else {
             System.out.println("No se encontraron películas con promedio de puntuación menor a 3.0 en esta sesión.");
         }
+
+        //CIERRE SESSION FACTORY
         HibernateUtil.getSessionFactory().close();
         System.out.println("\n--- FIN DE PRUEBAS. SessionFactory cerrado. ---");
     }
