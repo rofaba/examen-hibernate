@@ -4,7 +4,7 @@ import org.example.modelo.Opinion;
 
 import java.util.List;
 
-public class OpinionRepository implements OpinionDAO{
+public class OpinionRepository implements OpinionDAO {
 
     @Override
     public Opinion findById(Integer id) {
@@ -16,6 +16,7 @@ public class OpinionRepository implements OpinionDAO{
         }
 
     }
+
     @Override
     public List<Opinion> findAll() {
         try (var session = org.example.config.HibernateUtil.getSessionFactory().openSession()) {
@@ -42,29 +43,28 @@ public class OpinionRepository implements OpinionDAO{
     }
 
     @Override
-    public void delete(Opinion opinion) {
-        var tx = (org.hibernate.Transaction) null;
+    public List<Opinion> findByPeliculaId(Integer peliculaId) {
         try (var session = org.example.config.HibernateUtil.getSessionFactory().openSession()) {
-            tx = session.beginTransaction();
-            session.delete(opinion);
-            tx.commit();
+            String hql = "FROM Opinion WHERE pelicula.id = :peliculaId";
+            return session.createQuery(hql, Opinion.class)
+                    .setParameter("peliculaId", peliculaId)
+                    .list();
         } catch (Exception e) {
-            if (tx != null) tx.rollback();
             e.printStackTrace();
-
+            return null;
         }
     }
 
     @Override
-    public List<Opinion> findByPeliculaId(Integer peliculaId) {
-            try (var session = org.example.config.HibernateUtil.getSessionFactory().openSession()) {
-                String hql = "FROM Opinion WHERE pelicula.id = :peliculaId";
-                return session.createQuery(hql, Opinion.class)
-                        .setParameter("peliculaId", peliculaId)
-                        .list();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
+    public List<Opinion> findByUsuario(String usuario) {
+        try (var session = org.example.config.HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM Opinion WHERE usuario = :usuario";
+            return session.createQuery(hql, Opinion.class)
+                    .setParameter("usuario", usuario)
+                    .list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
+    }
 }

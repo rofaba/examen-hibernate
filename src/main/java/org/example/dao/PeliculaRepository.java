@@ -33,21 +33,5 @@ public class PeliculaRepository implements PeliculaDAO {
             e.printStackTrace();
         }
     }
-    public void delete(Pelicula pelicula) {
-        var tx = (org.hibernate.Transaction) null;
-        try (var session = org.example.config.HibernateUtil.getSessionFactory().openSession()) {
-            tx = session.beginTransaction();
-            session.delete(pelicula);
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        }
-    }
-    public void deleteById(Integer id) {
-        var pelicula = findById(id);
-        if (pelicula != null) {
-            delete(pelicula);
-        }
-    }
+
 }

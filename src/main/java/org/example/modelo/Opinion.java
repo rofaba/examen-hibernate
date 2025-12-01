@@ -19,17 +19,15 @@ public class Opinion {
     @Column(name = "puntuacion")
     private Integer puntuacion;
 
-    // Relación ManyToOne: Muchas Opiniones pertenecen a una Película.
-    // @JoinColumn especifica la columna en la tabla 'opinion' que es la clave foránea.
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pelicula_id")
     private Pelicula pelicula;
 
-    // Constructor vacío (necesario para Hibernate)
+
     public Opinion() {
     }
 
-    // Constructor con campos
+
     public Opinion(String descripcion, String usuario, Integer puntuacion, Pelicula pelicula) {
         this.descripcion = descripcion;
         this.usuario = usuario;

@@ -8,8 +8,6 @@ public interface OpinionDAO {
     Opinion findById(Integer id);
     List<Opinion> findAll();
     void save(Opinion opinion);
-    void delete(Opinion opinion);
-
-    // Método específico: Buscar todas las opiniones para una película
     List<Opinion> findByPeliculaId(Integer peliculaId);
+    List<Opinion> findByUsuario(String usuario);
 }

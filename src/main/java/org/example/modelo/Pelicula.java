@@ -16,16 +16,15 @@ public class Pelicula {
     @Column(name = "titulo", nullable = false)
     private String titulo;
 
-    // Relación OneToMany: Una Película puede tener muchas Opiniones.
-    // 'mappedBy' indica el campo en la clase Opinion que gestiona la FK.
+
     @OneToMany(mappedBy = "pelicula", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Opinion> opiniones = new ArrayList<>();
 
-    // Constructor vacío (necesario para Hibernate)
+
     public Pelicula() {
     }
 
-    // Constructor con campos
+
     public Pelicula(String titulo) {
         this.titulo = titulo;
     }
