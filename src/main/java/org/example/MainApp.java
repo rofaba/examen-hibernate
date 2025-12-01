@@ -60,7 +60,7 @@ public class MainApp {
         List<Pelicula> peliculasBajas = peliculaService.obtenerPeliculasConBajaPuntuacion();
 
         if (peliculasBajas != null && !peliculasBajas.isEmpty()) {
-            System.out.println("Películas encontradas:");
+            System.out.println("Películas con puntuación baja encontradas:");
             peliculasBajas.forEach(peli -> {
                 System.out.println("-> " + peli.getTitulo() + " (ID: " + peli.getId() + ")");
             });
